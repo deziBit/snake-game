@@ -4,5 +4,15 @@
 	<title>Snake Game</title>
 </head>
 <body>
+    <canvas class="canvas"></canvas>
+    <script>
+        let cells = 40;
+        let cellSize = 20;
+        let canvas = document.querySelector('.canvas');
+        canvas.style = 'background-color: #7db162';
+        canvas.width = cells * cellSize;
+        canvas.height = cells * cellSize;
+        let ctx = canvas.getContext('2d');
+    </script>
 </body>
 </html>
