@@ -5,6 +5,7 @@
 </head>
 <body>
     <canvas class="canvas"></canvas>
+    <script src="Game.js"></script>
     <script>
         let cells = 40;
         let cellSize = 20;
@@ -13,6 +14,7 @@
         canvas.width = cells * cellSize;
         canvas.height = cells * cellSize;
         let ctx = canvas.getContext('2d');
+        let game = new Game(ctx, cells, cellSize);
     </script>
 </body>
 </html>
