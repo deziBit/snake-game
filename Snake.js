@@ -2,13 +2,18 @@ class Snake{
     constructor(position){
         this.head = position;
         this.direction = {val: 'right', vec: {x: 1, y: 0}};
+        this.newDirection = undefined;
     }
     update(){
+        if(this.newDirection){
+            this.changeDirection();
+            this.newDirection = undefined;
+        }
         this.head.x += this.direction.vec.x;
 		this.head.y += this.direction.vec.y;
     }
-    changeDirection(newDirection){
-        switch(newDirection){
+    changeDirection(){
+        switch(this.newDirection){
 			case 'left':
                 if(this.direction.val != 'right')
                     this.direction = {val: 'left', vec: {x: -1, y: 0}};
