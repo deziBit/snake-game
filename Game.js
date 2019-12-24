@@ -33,4 +33,16 @@ class Game{
                 return true;
         return false;
     }
+    keydownHandler(event){
+		switch(event.keyCode){
+			case 37:	// ArrowLeft
+			case 38:	// ArrowUp
+			case 39:	// ArrowRight
+			case 40:	// ArrowDown
+                this.snake.changeDirection(event.key.substring(5).toLowerCase());
+				break;
+			default:
+				break;
+		}
+	}
 }

@@ -17,6 +17,7 @@
         let ctx = canvas.getContext('2d');
         let game = new Game(ctx, cells, cellSize);
         game.run();
+        window.addEventListener('keydown', game.keydownHandler.bind(game));
     </script>
 </body>
 </html>
