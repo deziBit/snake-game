@@ -4,14 +4,18 @@ class Game{
 		this.cells = cells;
         this.cellSize = cellSize;
         this.gamespeed = 10;
-        this.snake = new Snake({x: 10, y: 1});
         this.snakeColor = '#101010';
+        this.mouseColor = '#D3D3D3';
+        this.snake = new Snake({x: 10, y: 1});
+        this.mouse = undefined;
+        this.newMouse();
     }
     run(){
         if(!this.detectCollision()){
             setTimeout(() => {
                 this.ctx.clearRect(0, 0, this.cells * cellSize, this.cells * cellSize);
                 this.draw(this.snake.head, this.snakeColor);
+                this.draw(this.mouse, this.mouseColor);
                 this.snake.update();
                 requestAnimationFrame(() => this.run());
             }, 1000/this.gamespeed);
@@ -31,7 +35,13 @@ class Game{
             this.snake.head.y >= this.cells ||
             this.snake.head.y < 0)
                 return true;
+        // Collision with mouse
+        if(this.snake.head.x == this.mouse.x && this.snake.head.y == this.mouse.y)
+            this.newMouse();
         return false;
+    }
+    newMouse(){
+        this.mouse = {x: Math.floor(Math.random() * this.cells), y: Math.floor(Math.random() * this.cells)};
     }
     keydownHandler(event){
 		switch(event.keyCode){
