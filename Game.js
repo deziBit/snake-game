@@ -4,6 +4,7 @@ class Game{
 		this.cells = cells;
         this.cellSize = cellSize;
         this.isRunning = false;
+        this.gamespeed = 10;
         this.snake = new Snake({x: 10, y: 1});
         this.snakeColor = '#101010';
     }
@@ -12,7 +13,12 @@ class Game{
         this.run();
     }
     run(){
-        this.draw(this.snake.head, this.snakeColor);
+        setTimeout(() => {
+            this.ctx.clearRect(0, 0, this.cells * cellSize, this.cells * cellSize);
+            this.draw(this.snake.head, this.snakeColor);
+            this.snake.update();
+            requestAnimationFrame(() => this.run());
+        }, 1000/this.gamespeed);
     }
     draw(position, color){
         this.ctx.fillStyle = color;
