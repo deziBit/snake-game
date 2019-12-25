@@ -6,6 +6,7 @@ class Game{
         this.gamespeed = 10;
         this.snakeColor = '#101010';
         this.mouseColor = '#D3D3D3';
+        this.score = 0;
         this.snake = new Snake({x: 10, y: 1});
         this.mouse = undefined;
         this.newMouse();
@@ -23,6 +24,7 @@ class Game{
         }
         else{
             console.log('GAME OVER!');
+            console.log('Your score: ', this.score);
         }
     }
     draw(position, color){
@@ -42,6 +44,7 @@ class Game{
         // Collision with mouse
         if(this.snake.head.x == this.mouse.x && this.snake.head.y == this.mouse.y){
             this.snake.eat(this.mouse);
+            this.score++;
             this.newMouse();
         }
         return false;
