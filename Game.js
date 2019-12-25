@@ -36,6 +36,9 @@ class Game{
             this.snake.head.y >= this.cells ||
             this.snake.head.y < 0)
                 return true;
+        // Collision with self
+        if(this.snake.body.some(part => part.x == this.snake.head.x && part.y == this.snake.head.y))
+            return true;
         // Collision with mouse
         if(this.snake.head.x == this.mouse.x && this.snake.head.y == this.mouse.y){
             this.snake.eat(this.mouse);
