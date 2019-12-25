@@ -51,6 +51,8 @@ class Game{
     }
     newMouse(){
         this.mouse = {x: Math.floor(Math.random() * this.cells), y: Math.floor(Math.random() * this.cells)};
+        if(this.snake.body.some(part => part.x == this.mouse.x && part.y == this.mouse.y))
+            this.newMouse();
     }
     keydownHandler(event){
 		switch(event.keyCode){
