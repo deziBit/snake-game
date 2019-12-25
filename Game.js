@@ -15,6 +15,7 @@ class Game{
             setTimeout(() => {
                 this.ctx.clearRect(0, 0, this.cells * cellSize, this.cells * cellSize);
                 this.draw(this.snake.head, this.snakeColor);
+                this.snake.body.forEach(part => this.draw(part, this.snakeColor));
                 this.draw(this.mouse, this.mouseColor);
                 this.snake.update();
                 requestAnimationFrame(() => this.run());
@@ -36,8 +37,10 @@ class Game{
             this.snake.head.y < 0)
                 return true;
         // Collision with mouse
-        if(this.snake.head.x == this.mouse.x && this.snake.head.y == this.mouse.y)
+        if(this.snake.head.x == this.mouse.x && this.snake.head.y == this.mouse.y){
+            this.snake.eat(this.mouse);
             this.newMouse();
+        }
         return false;
     }
     newMouse(){
